@@ -2,8 +2,6 @@
 
 import os
 from core.logger import log, I, W, E
-import importlib
-
 
 async def load_extensions(bot, base_path="modules"):
     """

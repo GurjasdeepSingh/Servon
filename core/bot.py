@@ -12,7 +12,7 @@ load_dotenv(".env")
 @dataclass(slots=True)
 class Config:
     TOKEN: str
-    PREFIX: str = "!"
+    PREFIX: str = ";"
     DEBUG: bool = True
 
 
@@ -23,7 +23,7 @@ def load_config() -> Config:
 
     return Config(
         TOKEN=token,
-        PREFIX=os.getenv("BOT_PREFIX", "!"),
+        PREFIX=os.getenv("BOT_PREFIX", ";"),
         DEBUG=os.getenv("DEBUG", "true").lower() == "true",
     )
 
@@ -58,6 +58,7 @@ class Bot(commands.Bot):
     async def on_ready(self):
         # lightweight; avoid heavy work here
         log(f"Logged in as {self.user} ({self.user.id})", I)
+        await self.change_presence(status=discord.Status.dnd, activity=discord.Activity(type=discord.ActivityType.streaming,name="Discord Support"))
 
 
 def create_bot() -> Bot:
