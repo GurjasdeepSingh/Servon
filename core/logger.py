@@ -1,6 +1,6 @@
-I = "I"
-W = "W"
-E = "E"
+I = "info"
+W = "warn"
+E = "error"
 
 import logging
 import os
@@ -66,16 +66,16 @@ def _get_logger(name: str, filename: str):
     return logger
 
 
-def log(message: str, level: str="I", guild=None):
+def log(message: str, level: str="info", guild=None):
     """
     level: 'I', 'W', 'E'
     guild: discord.Guild or None
     """
 
     level_map = {
-        "I": logging.INFO,
-        "W": logging.WARNING,
-        "E": logging.ERROR
+        "info": logging.INFO,
+        "warn": logging.WARNING,
+        "error": logging.ERROR
     }
 
     log_level = level_map.get(level.upper(), logging.INFO)

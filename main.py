@@ -2,8 +2,12 @@ import asyncio
 from core.bot import create_bot
 from core.logger import log
 from core.loader import load_extensions
+from core.database import init_db
+
 
 async def main():
+    await init_db()
+
     bot = create_bot()
 
     log("Bot is starting...", "I")
